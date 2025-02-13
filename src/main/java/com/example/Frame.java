@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Frame extends JFrame {
+    String apiKey = Config.getApiKey();
+
+
     String usernamesearch;
     public Frame(){
         setTitle("Instagram Scraper");
@@ -19,9 +22,9 @@ public class Frame extends JFrame {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        gbc.gridx = 0; // Yatayda ortala
-        gbc.gridy = 0; // İlk satır
-        gbc.insets = new Insets(10, 10, 10, 10); // Boşluklar
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);
 
         panelMain.setBackground(Color.BLACK);
         panelMain.setVisible(true);
@@ -38,7 +41,7 @@ public class Frame extends JFrame {
 
         panelMain.add(textFieldSearch, gbc);
 
-        gbc.gridy++; // Yeni satıra geç
+        gbc.gridy++;
 
         panelMain.add(buttonSearch, gbc);
 
@@ -50,7 +53,7 @@ public class Frame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 usernamesearch = textFieldSearch.getText().trim();
                 if (!usernamesearch.isEmpty()){
-                    App.searchbyusernameanddownload(usernamesearch);
+                    App.searchbyusernameanddownload(usernamesearch, apiKey);
                     textFieldSearch.setText("");
                 }else {
                     JOptionPane.showMessageDialog(null, "Lütfen bir kullanıcı adı girin!");
